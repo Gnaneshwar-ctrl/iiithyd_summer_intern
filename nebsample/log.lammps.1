@@ -1,0 +1,137 @@
+LAMMPS (29 Nov 2010)
+Processor partition = 1
+# Fe eam
+
+units         metal
+
+atom_style    atomic
+boundary      p p p
+neighbor      2.0 bin
+neigh_modify  every 1 delay 0 check yes
+atom_modify   map array sort 0 0.0
+variable      u uloop 2
+read_data     begin.dat
+  orthogonal box = (0 0 0) to (44.2102 48.7292 2.46119)
+  1 by 1 by 1 processor grid
+  462 atoms
+  462 velocities
+
+pair_style    eam/fs
+pair_coeff    * * Fe_mm.eam.fs Fe
+
+timestep      0.001
+
+fix           1 all neb 1.0 
+
+thermo        1000
+
+dump          myDump all xyz 1000 dump.xyz.$u
+dump          myDump all xyz 1000 dump.xyz.2
+
+min_style     quickmin
+#minimize      1.0e-6 1.0e-6 100 1000
+
+neb           1.0e-6 20000 20000 1000 end.dat 
+Memory usage per processor = 1.67719 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+       0            0   -1898.9016            0   -1898.9016    21226.454 
+    1000 1.359633e-07   -1898.9017            0   -1898.9017    21226.613 
+    2000 4.755269e-07   -1898.9019            0   -1898.9019    21227.031 
+    3000 9.2192401e-07   -1898.9022            0   -1898.9022    21227.527 
+    4000 1.4532435e-06   -1898.9025            0   -1898.9025    21227.914 
+    5000 2.0675179e-06   -1898.9028            0   -1898.9028    21228.136 
+    6000 2.7545491e-06   -1898.9032            0   -1898.9032    21228.193 
+    7000 3.5008794e-06   -1898.9036            0   -1898.9036    21228.072 
+    8000 4.2924718e-06   -1898.9041            0   -1898.9041    21227.739 
+    9000 5.1159907e-06   -1898.9046            0   -1898.9046     21227.16 
+   10000 5.9595051e-06   -1898.9051            0   -1898.9051    21226.282 
+   11000 6.8127174e-06   -1898.9056            0   -1898.9056    21225.066 
+   12000 7.6668384e-06    -1898.906            0    -1898.906    21223.499 
+   13000 8.5142113e-06   -1898.9065            0   -1898.9065    21221.569 
+   14000 9.3478638e-06    -1898.907            0    -1898.907    21219.279 
+   15000 1.0161103e-05   -1898.9075            0   -1898.9075    21216.655 
+   16000 1.0947241e-05   -1898.9079            0   -1898.9079    21213.706 
+   17000 1.1699485e-05   -1898.9084            0   -1898.9084     21210.47 
+   18000 1.241099e-05   -1898.9088            0   -1898.9088    21206.964 
+   19000 1.3074988e-05   -1898.9092            0   -1898.9092    21203.222 
+   20000 1.3684917e-05   -1898.9095            0   -1898.9095    21199.293 
+Loop time of 51.6988 on 1 procs for 20000 steps with 462 atoms
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+        -1898.90163557     -1898.90950275     -1898.90950308
+  Force two-norm initial, final = 0.0959676 0.0198912
+  Force max component initial, final = 0.0108739 0.00170002
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 20000 20000
+
+Pair  time (%) = 42.4437 (82.098)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 0.959711 (1.85635)
+Outpt time (%) = 0.0200198 (0.0387238)
+Other time (%) = 8.27539 (16.0069)
+
+Nlocal:    462 ave 462 max 462 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    5074 ave 5074 max 5074 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    32960 ave 32960 max 32960 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 32960
+Ave neighs/atom = 71.342
+Neighbor list builds = 0
+Dangerous builds = 0
+Memory usage per processor = 1.67719 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+   20000            0   -1898.9095            0   -1898.9095    21199.293 
+   21000 6.1559746e-09   -1898.9095            0   -1898.9095     21199.25 
+   22000 2.455867e-08   -1898.9095            0   -1898.9095    21199.123 
+   23000 5.5013012e-08   -1898.9095            0   -1898.9095     21198.91 
+   24000 9.7196163e-08   -1898.9096            0   -1898.9096    21198.613 
+   25000 1.5066102e-07   -1898.9096            0   -1898.9096    21198.232 
+   26000 2.1484107e-07   -1898.9096            0   -1898.9096    21197.768 
+   27000 2.8905649e-07   -1898.9097            0   -1898.9097    21197.221 
+   28000 3.7252148e-07   -1898.9097            0   -1898.9097    21196.593 
+   29000 4.6435271e-07   -1898.9098            0   -1898.9098    21195.885 
+   30000 5.6357864e-07   -1898.9098            0   -1898.9098    21195.099 
+   31000 6.6914989e-07   -1898.9099            0   -1898.9099    21194.235 
+   32000 7.7995033e-07     -1898.91            0     -1898.91    21193.297 
+   33000 8.9480887e-07     -1898.91            0     -1898.91    21192.285 
+   34000 1.0125117e-06   -1898.9101            0   -1898.9101    21191.201 
+   35000 1.1318154e-06   -1898.9102            0   -1898.9102    21190.048 
+   36000 1.2514602e-06   -1898.9102            0   -1898.9102    21188.828 
+   37000 1.3701835e-06   -1898.9103            0   -1898.9103    21187.545 
+   38000 1.4867332e-06   -1898.9104            0   -1898.9104    21186.204 
+   39000 1.5998823e-06   -1898.9104            0   -1898.9104     21184.81 
+   40000 1.7084405e-06   -1898.9105            0   -1898.9105    21183.367 
+Loop time of 50.5499 on 1 procs for 20000 steps with 462 atoms
+
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+        -1898.90950308     -1898.91048521     -1898.91048527
+  Force two-norm initial, final = 0.0198912 0.0102631
+  Force max component initial, final = 0.00170002 0.000913673
+  Final line search alpha, max atom move = 0 0
+  Iterations, force evaluations = 20000 20000
+
+Pair  time (%) = 85.1929 (168.532)
+Neigh time (%) = 0 (0)
+Comm  time (%) = 1.92251 (3.80319)
+Outpt time (%) = 0.0402443 (0.0796131)
+Other time (%) = -36.6057 (-72.415)
+
+Nlocal:    462 ave 462 max 462 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:    5078 ave 5078 max 5078 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    32964 ave 32964 max 32964 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 32964
+Ave neighs/atom = 71.3506
+Neighbor list builds = 0
+Dangerous builds = 0
+

@@ -1,0 +1,15 @@
+LAMMPS (29 Sep 2021)
+Processor partition = 1
+# KALJ NVE, read data
+
+atom_style atomic
+atom_modify map yes
+boundary p p p #periodic boundary cond. in each direction
+
+read_data ./min1_min2_config/min_config_0.1875.data # read data file (incl.mass info)
+Reading data file ...
+  orthogonal box = (0.0000000 0.0000000 0.0000000) to (9.4000000 9.4000000 9.4000000)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+ERROR: Expected integer parameter instead of '1.95617e-01' in input script or data file (../atom.cpp:1156)
+Last command: read_data ./min1_min2_config/min_config_0.1875.data # read data file (incl.mass info)

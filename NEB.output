@@ -1,0 +1,12 @@
+LAMMPS (29 Sep 2021)
+Running on 4 partitions of processors
+Reading NEB coordinate file(s) ...
+Setting up regular NEB ...
+Step MaxReplicaForce MaxAtomForce GradV0 GradV1 GradVc EBF EBR RDT RD1 PE1 RD2 PE2 ... RDN PEN
+0    50.089902    1342.1817    9.0564685    50.089902    50.089902 0.0012269847            0  0.064746964            0   -8.2150296   0.33333333   -8.2148828   0.66666667    -8.214498            1   -8.2138026 
+6     49.84308    1330.0322    9.0351227     49.84308     49.84308 0.0012179118            0  0.064594006            0   -8.2150299   0.33413465   -8.2148834    0.6682573   -8.2144993            1    -8.213812 
+Setting up climbing ...
+Climbing replica = 4
+Step MaxReplicaForce MaxAtomForce GradV0 GradV1 GradVc EBF EBR RDT RD1 PE1 RD2 PE2 ... RDN PEN
+6     49.84308    1330.0322    9.0351227     49.84308     49.84308 0.0012179118            0  0.064594006            0   -8.2150299   0.33413465   -8.2148834    0.6682573   -8.2144993            1    -8.213812 
+12    49.598252    1318.0316    9.0138978    49.598252    49.598252 0.0012089295            0   0.06444189            0   -8.2150302   0.33493531   -8.2148839   0.66984634   -8.2145006            1   -8.2138213 

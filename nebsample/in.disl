@@ -1,0 +1,28 @@
+# Fe eam
+
+units         metal
+
+atom_style    atomic
+boundary      p p p
+neighbor      2.0 bin
+neigh_modify  every 1 delay 0 check yes
+atom_modify   map array sort 0 0.0
+variable      u uloop 2
+read_data     begin.dat
+
+pair_style    eam/fs
+pair_coeff    * * Fe_mm.eam.fs Fe
+
+timestep      0.001
+
+fix           1 all neb 1.0 
+
+thermo        1000
+
+dump          myDump all xyz 1000 dump.xyz.$u
+
+min_style     quickmin
+#minimize      1.0e-6 1.0e-6 100 1000
+
+neb           1.0e-6 20000 20000 1000 end.dat 
+
