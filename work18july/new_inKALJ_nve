@@ -1,0 +1,23 @@
+#KALJ NVE, read data
+atom_style atomic
+boundary p p p #periodic boundary cond. in each direction
+read_data ./defining_initial_config/init_config_temp_0.7_modified.data #read data file (incl.mass)
+
+pair_style lj/smooth/linear 2.5
+pair_coeff * * 1.0 1.0
+pair_coeff 1 1 1.0 1.0 2.5
+pair_coeff * * 1.5 0.80
+pair_coeff 1 2 1.5 0.80 2.0
+pair_coeff * * 0.5 0.88
+pair_coeff 2 2 0.5 0.88 2.2
+
+timestep 0.005 #Delta t
+neighbor 0.3 bin
+neigh_modify every 1 delay 0 check yes
+
+dump mydump all custom 10000 ./data/conf_temp_0.7.*.data id type x y z vx vy vz
+dump_modify mydump sort id
+
+# set numerical integrator
+fix nve1 all nve # NVE; default is velocity verlet
+run 50000

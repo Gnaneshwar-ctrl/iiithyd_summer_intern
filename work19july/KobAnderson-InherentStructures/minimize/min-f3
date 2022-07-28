@@ -1,0 +1,1 @@
+read_dump ../confdump-files/confdump.10.data 10  x y z #read dump file

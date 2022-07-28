@@ -1,0 +1,37 @@
+# KALJ minimize , read data
+
+atom_style atomic  
+boundary p p p #periodic boundary cond. in each direction
+
+read_data initconf_T05eq.data # read data file (incl.mass info)
+
+read_dump ../confdump-files/confdump.10.data 10  x y z #read dump file
+
+pair_style    lj/cut 2.5   # Define interaction potential.
+pair_coeff    1 1  1.0 1.0  2.5  # type type eps sigma rcut
+pair_coeff    1 2  1.5 0.80 2.0  #typeA typeB epsAB sigmaAB rcutAB=2.5*0.8=2.0
+pair_coeff    2 2  0.5 0.88 2.2  #typeB typeB epsBB sigmaBB rcutBB=2.5*0.88=2.2
+
+timestep 0.0025 #Delta t 
+# 
+# pair_modify shift yes
+# kspace_style pppm 1e-5
+# 
+neighbor          0.3 bin
+neigh_modify      every 1 delay 0 check yes # Update neighbor
+ 
+# print every 50 MD steps  positions and velocities into confdump.*.data files
+dump mydump all custom 10000 ./confdump_min.*.data id type x y z vx vy vz
+# dump myDump all custom 4 dump/dumpT${T}.NVT.atom.velocity id type xs ys zs vx vy vz
+dump_modify mydump sort id
+
+# minimization
+min_style cg
+minimize 0.0 1.0e-10 1000 10000
+
+min_style sd
+minimize 0.0 1.0e-10 1000 1000
+
+min_style cg
+minimize 0.0 1.0e-10 1000 10000
+

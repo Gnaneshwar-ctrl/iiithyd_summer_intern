@@ -1,0 +1,7 @@
+# KALJ minimize , read data
+
+atom_style atomic  
+boundary p p p #periodic boundary cond. in each direction
+
+read_data initconf_T05eq.data # read data file (incl.mass info)
+
